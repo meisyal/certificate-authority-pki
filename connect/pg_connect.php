@@ -11,4 +11,12 @@ $dbpass = 'password';
 // Make the connection:
 $dbc = pg_connect("host=$dbhost port=$dbport dbname=$dbname user=$dbuser password=$dbpass");
 
+if ($dbc) {
+  echo 'Connection attempt succeeded.';
+} else {
+  echo 'Connection attempt failed.';
+}
+
+pg_close($dbc);
+
 ?>
