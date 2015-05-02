@@ -26,7 +26,7 @@ if (isset($_POST['submitted'])) {
   // Cek kecocokan kata sandi
   if (!empty($_POST['password1'])) {
     if ($_POST['password1'] != $_POST['password2']) {
-      $errors[] = 'Kata sandi Anda tidak sama.'
+      $errors[] = 'Kata sandi Anda tidak sama.';
     } else {
       $password = trim($_POST['password1']);
     }
