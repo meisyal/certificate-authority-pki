@@ -81,11 +81,26 @@ if (isset($_POST['submitted'])) {
 
 <h1>Pendaftaran</h1>
 <form action="register.php" method="post">
-  <p>Nama Lengkap: <input type="text" name="full_name" size="30" value="<?php if (isset($_POST['full_name'])) echo $_POST['full_name']; ?>" /></p>
-  <p>Nama Instansi: <input type="text" name="institution" size="30" value="<?php if (isset($_POST['institution'])) echo $_POST['institution']; ?>" /></p>
+  <h3>Detail Organisasi</h3>
+  <p>Nama Organisasi: <input type="text" name="institution" size="30" value="<?php if (isset($_POST['institution'])) echo $_POST['institution']; ?>" /></p>
+  <p>Alamat: <input type="text" name="institution_address" size="30" value="" /></p>
+  <p>Kota: <input type="text" name="institution_city" size="30" value="" /></p>
+  <p>Kode Pos: <input type="text" name="institution_zip" size="30" value="" /></p>
+  <p>Negara: <input type="" /></p>
+  <p>Bidang organisasi: <input type="text" name="" size="30" value="" /></p>
+
+  <h3>Detail Pemohon (wakil organisasi)</h3>
+  <p>Nama Depan: <input type="text" name="full_name" size="30" value="<?php if (isset($_POST['full_name'])) echo $_POST['full_name']; ?>" /></p>
+  <p>Nama Belakang: <input type="text" name="" size="30" value="" /></p>
+  <p>Jabatan di organisasi: <input type="" /></p>
+  <p>Alamat e-mail: <input type="text" name="" size="30" value="" /></p>
+  <p>Nomor telepon: <input type="text" name="" size="30" value="" /></p>
+
+  <h3>Akun</h3>
+  <p>Nama akun: <input type="text" name="" size="30" value="" /></p>
   <p>Kata sandi: <input type="password" name="password1" size="10" maxlength="20" /></p>
   <p>Ulangi kata sandi: <input type="password" name="password2" size="10" maxlength="20" /></p>
-  <p>Public Key: <input type="text" name="public_key" /></p>
+
   <p><input type="submit" name="submit" value="Daftar" /></p>
   <input type="hidden" name="submitted" value="TRUE" />
 </form>
