@@ -1,6 +1,8 @@
 <?php # script - request_detail.php
 
-$page_title = 'Pendaftaran Sertifikat Digital';
+include('connect/pg_connect.php');
+
+$page_title = 'Formulir Permohonan Sertifikat Digital';
 include('includes/header.html');
 
 // Check the form before storing the data into database
@@ -89,9 +91,18 @@ if (isset($_POST['submitted'])) {
   <p>Kota/Lokasi: <input type="text" name="institution_city" size="30" value="" /></p>
   <p>Provinsi/Region: <input type="text" name="institution_region" size="30" value="" /></p>
   <p>Kode Pos: <input type="text" name="institution_zip" size="30" value="" /></p>
-  <p>Negara: <select name="institution_country">
-                <option value="id">Indonesia</option>
-             </select>
+  <p>Negara: <?php
+                $q = "SELECT * FROM negara";
+                $result = pg_query($dbc, $q);
+
+                echo '<select name="institution_country">';
+                while ($row = pg_fetch_row($result)) {
+                    echo '<option value="' . htmlspecialchars($row[0]) . '">' . htmlspecialchars($row[1]) . '</option>';
+                }
+                echo "</select>";
+
+                pg_close($dbc);
+             ?>
   </p><br />
 
   <h3>Detail Pemohon (wakil organisasi)</h3>
@@ -102,12 +113,12 @@ if (isset($_POST['submitted'])) {
   <p>Nomor telepon: <input type="text" name="tel_number" size="30" value="" /></p>
   <p>Fax: <input type="text" name="fax_number" size="30" value="" /></p><br />
 
-  <h3>Akun</h3>
+  <h3>Detil Akun</h3>
   <p>Nama akun: <input type="text" name="" size="30" value="" /></p>
   <p>Kata sandi: <input type="password" name="password1" size="10" maxlength="20" /></p>
   <p>Ulangi kata sandi: <input type="password" name="password2" size="10" maxlength="20" /></p><br />
 
-  <p><input type="submit" name="submit" value="Daftar" /></p>
+  <p><input type="submit" name="submit" value="Lanjutkan" /></p>
   <input type="hidden" name="submitted" value="TRUE" />
 </form>
 
