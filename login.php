@@ -21,7 +21,7 @@ if (!empty($errors)) {
 // Display the login form:
 <h1>Login</h1>
 <form action="auth.php" method="post">
-  <p>Alamat e-mail: <input type="text" name="email" size="20" /></p>
+  <p>Nama user: <input type="text" name="email" size="20" /></p>
   <p>Kata sandi: <input type="password" name="password" size="20" /></p>
   <p><input type="submit" name="submit" value="Login" /></p>
   <input type="hidden" name="submitted" value="TRUE" />

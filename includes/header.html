@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title><?php echo $page_title; ?></title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="assets/bootstrap/js/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(".alert").fadeOut(3000);
+    </script>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    
+
    <div class="navbar navbar-fixed-top navbar-inverse outer-navbar">
       <div class="container">
         <div class="navbar-header">
@@ -26,18 +33,18 @@
               <a href="index.php">Halaman utama</a>
             </li>
             <li>
-              <a href="request_detail.php" >Permohonan Sertifikat</a>
+              <a href="intro.php" >Alur Permohonan</a>
             </li>
             <li>
-              <a href="#">Lihat Status Sertifikat</a>
+              <a href="request_detail.php">Permohonan Sertifikat</a>
             </li>
               <li>
-              <a href="#">Unduh Sertifikat</a>
+              <a href="login.php">Masuk</a>
             </li>
               <li>
-              <a href="#">Tambah menu baru</a>
+              <a href="about.php">Tentang</a>
             </li>
-           
+
         </div>
         <!--List navigation-->
       </div>
