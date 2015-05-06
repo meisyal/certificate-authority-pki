@@ -75,10 +75,10 @@ if (isset($_POST['submitted'])) {
   }
 
   // Cek nama depan
-  if (empty($_POST['full_name'])) {
+  if (empty($_POST['first_name'])) {
     $errors[] = 'Anda lupa memasukkan nama depan.';
   } else {
-    $fullname = trim($_POST['full_name']);
+    $firstname = trim($_POST['first_name']);
   }
 
   // Cek nama depan
@@ -101,6 +101,9 @@ if (isset($_POST['submitted'])) {
   } else {
     $telpnumber = trim($_POST['telp_number']);
   }
+
+  // ambil fax
+  $faxnumber = $_POST['fax_number'];
 
   // Cek nama akun
   if (empty($_POST['akun'])) {
@@ -127,13 +130,13 @@ if (isset($_POST['submitted'])) {
     require_once('connect/pg_connect.php');
 
     // Make the query
-    $q = "INSERT INTO request (nama_lengkap, nama_instansi, kata_sandi, public_key) VALUES ('$fullname', '$institute', SHA1('$password'), '$pk')";
+    $q = "SELECT save_data_pemohon('$institution_country', '$cn', '$institution_name', '$institution_unit', '$institution_addr', '$institution_city', '$institution_region', '$institution_zip', '$accountname', '$password', '$firstname', '$lastname', '$email','$jobtitle', '$telpnumber', '$faxnumber')";
     $r = pg_query($dbc, $q);
 
     if ($r) { // If it ran OK.
-      echo '<h1>Terima kasih</h1><p>Pendaftaran sertifikat berhasil</p><p><br /></p>';
+      echo '<h1>Terima kasih</h1><p>Pengajuan permohonan sertifikat berhasil.</p><p><br /></p>';
     } else { // If it did not run OK.
-      echo '<h1>Sistem error</h1><p class="error">Pendaftaran tidak berhasil. Maaf atas ketidaknyamanannya.</p>';
+      echo '<h1>Sistem error</h1><p class="error">Pengajuan permohonan sertifikat tidak berhasil. Maaf atas ketidaknyamanannya.</p>';
 
       echo '<p>' . pg_last_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
     }
@@ -185,7 +188,7 @@ if (isset($_POST['submitted'])) {
 
   <h3>Detail Pemohon (wakil organisasi)</h3>
   <p>Alamat e-mail: <input type="text" name="email" size="30" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
-  <p>Nama Depan: <input type="text" name="full_name" size="30" value="<?php if (isset($_POST['full_name'])) echo $_POST['full_name']; ?>" /></p>
+  <p>Nama Depan: <input type="text" name="first_name" size="30" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" /></p>
   <p>Nama Belakang: <input type="text" name="last_name" size="30" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" /></p>
   <p>Jabatan di organisasi: <input type="text" name="job_title" size="30" value="<?php if (isset($_POST['job_title'])) echo $_POST['job_title']; ?>" /></p>
   <p>Nomor telepon: <input type="text" name="telp_number" size="30" value="<?php if (isset($_POST['telp_number'])) echo $_POST['telp_number']; ?>" /></p>
