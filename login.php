@@ -1,56 +1,65 @@
 <?php # script - login.php
 
 // Set page title
-$page_title = 'Login';
+$page_title = 'Masuk';
 
 // Include the header:
 include('includes/header.html');
 
+if (isset($_POST['submitted'])) {
+
+  require_once('includes/login_functions.php');
+  require_once('connect/pg_connect.php');
+  list($check, $data) = check_login($dbc, $_POST['username'], $_POST['password']);
+
+  if ($check) { // OK!
+    // Set session data
+    session_start();
+    $_SESSION['nama_user'] = $data['nama_user'];
+
+    // Redirect
+    $url = absolute_url('auth.php');
+    header("Location: $url");
+    exit();
+  } else { // Unsuccessful!
+    $errors = $data;
+  }
+
+  pg_close($dbc);
+}
+
 // Print any error messages, if they exist:
 
-            session_start();
+if (!empty($errors)) {
+  echo '<h1>Galat!</h1>
+        <p style=\"font-weight: bold; color: #C00; background: #f0f0c0; text-align: center;\>Ada galat di bawah ini:<br />';
+  foreach ($errors as $msg) {
+    echo " - $msg<br />\n";
+  }
 
-            //Mengambil parameter p dari loginhandling, untuk mencetak error proses login
-            //p=1, Jika satu atau lebih isian kosong
-            //p=2, Jika captcha salah
-            //p=3, Jika captcha benar namun username sama password salah
-            if(isset($_GET['p']))
-            {
-              $p = $_GET["p"];
-
-              if($p=="1")
-              {
-                echo '<div class="alert alert-danger alert-dismissable fade in">
-                        <a class="close" data-dismiss="alert" href="#">&times;</a>
-                        Silahkan isi isian dengan lengkap</div>';
-              }
-              
-              elseif($p=="2")
-              {
-                echo '<div class="alert alert-danger alert-dismissable fade in">
-                        <a class="close" data-dismiss="alert" href="#">&times;</a>
-                        ID atau Password yang Anda masukkan salah</div>';
-              }
-            }
-
-          ?>
+  echo '</p><p>Ulangi kembali.</p>';
+}
 
 // Display the login form:
+?>
+
   <div class="container">
     <div class="row" style="padding-top:100px;">
       <div class="col-md-12 ">
         <div class="panel panel-default">
           <div class="panel-body">
-
-           <form action="request_detail.php" method="POST">
-
-<h1>Login</h1>
-<form action="auth.php" method="post">
-  <p>Nama user: <input type="text" name="email" size="20" /></p>
-  <p>Kata sandi: <input type="password" name="password" size="20" /></p>
-  <p><input type="submit" name="submit" value="Login" /></p>
-  <input type="hidden" name="submitted" value="TRUE" />
-</form>
+            <h1>Login</h1>
+            <form action="login.php" method="post">
+              <p>Nama user: <input type="text" name="username" size="20" /></p>
+              <p>Kata sandi: <input type="password" name="password" size="20" /></p>
+              <p><input class="btn btn-success" type="submit" name="submit" value="Masuk" /></p>
+              <input type="hidden" name="submitted" value="TRUE" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <?php
 include('includes/footer.html');
