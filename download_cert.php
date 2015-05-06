@@ -12,7 +12,13 @@ include('includes/user_header.html');
       <div class="panel panel-default">
         <div class="panel-body">
         <h1>Unduh Permohonan Sertifikat</h1>
-
+        <table class="table table-hover table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th style="text-align:center;">SERTIFIKAT</th>
+              </tr>
+          </thread>
+      </table>
       </div>
     </div>
   </div>

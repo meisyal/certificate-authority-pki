@@ -12,7 +12,18 @@ include('includes/admin_header.html');
       <div class="panel panel-default">
         <div class="panel-body">
         <h1>Daftar Permohonan Sertifikat</h1>
+         <table class="table table-hover table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th style="text-align:center;">NAMA ORGANISASI</th>
+                  <th style="text-align:center;width:200px">DOMAIN ORGANISASI</th>
+                  <th style="text-align:center;width:200px">CSR</th>
+                  <th style="text-align:center;width:180px">KONFIRMASI</th>
+                  
+                </tr>
 
+              </thead>
+          </table>
       </div>
     </div>
   </div>
