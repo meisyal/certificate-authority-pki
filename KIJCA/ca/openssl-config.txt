@@ -1,0 +1,46 @@
+[ca]
+default_ca         = yolo.com
+
+
+[yolo.com]
+dir                = yolo.com
+
+# sertifikat dan private key CA
+certificate        = $dir/yolo.crt
+private_key        = $dir/yolo.key
+
+# Folder penyimpanan
+cert               = $dir/sertifikat
+new_certs_dir      = $dir/sertifikat
+crl                = $dir/sertifikat-batal
+
+# Database sertifikat yang sudah dikeluarkan
+database           = $dir/database.txt
+serial             = $dir/serial.txt
+
+# Nilai default untuk sertifikat baru
+default_days       = 3650              # masa berlaku sertifikat customer
+default_crl_days   = 30                # masa berlaku daftar pembatalan sertifikat
+default_md         = sha1
+x509_extensions    = usr_cert
+
+# Konfigurasi tambahan
+policy = policy-saya
+x509_extensions = certificate_extensions
+
+[ policy-saya ]
+# Gunakan informasi dalam CSR
+commonName = supplied
+stateOrProvinceName = supplied
+countryName = supplied
+emailAddress = supplied
+organizationName = supplied
+organizationalUnitName = optional
+
+[ certificate_extensions ]
+# Sertifikat customer tidak boleh jadi CA
+basicConstraints = CA:false
+
+[ req ]
+# private key yang digunakan untuk menyetujui CSR
+default_keyfile = yolo.com/yolo.key
