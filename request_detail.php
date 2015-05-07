@@ -135,11 +135,23 @@ if (isset($_POST['submitted'])) {
     $r = pg_query($dbc, $q);
 
     if ($r) { // If it ran OK.
+      echo "<div class=\"container\">
+              <div class=\"row\" style=\"padding-top:100px;\">
+                <div class=\"col-md-12\">
+                  <div class=\"panel panel-default\">
+                    <div class=\"panel-body\">";
       echo '<h1 style="text-align: center;">Terima kasih</h1><p>Pengajuan permohonan sertifikat berhasil.</p><p><br /></p>';
+      echo "</div></div></div></div></div>";
     } else { // If it did not run OK.
+      echo "<div class=\"container\">
+              <div class=\"row\" style=\"padding-top:100px;\">
+                <div class=\"col-md-12\">
+                  <div class=\"panel panel-default\">
+                    <div class=\"panel-body\">";
       echo '<h1>Sistem error</h1><p style="font-weight: bold; color: #C00; background: #f0f0c0; text-align: center;">Pengajuan permohonan sertifikat tidak berhasil. Maaf atas ketidaknyamanannya.</p>';
+      echo "</div></div></div></div></div>";
 
-      echo '<p>' . pg_last_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
+      // echo '<p>' . pg_last_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
     }
 
     // Close connection
@@ -150,6 +162,11 @@ if (isset($_POST['submitted'])) {
 
   } else {
     // Show the errors
+    echo "<div class=\"container\">
+            <div class=\"row\" style=\"padding-top:100px;\">
+              <div class=\"col-md-12\">
+                <div class=\"panel panel-default\">
+                  <div class=\"panel-body\">";
     echo '<h1>Error!</h1><p style="font-weight: bold; color: #C00; background: #f0f0c0; text-align: center;">Ada kesalahan yang terjadi:<br />';
 
     foreach ($errors as $msg) {
@@ -157,6 +174,7 @@ if (isset($_POST['submitted'])) {
     }
 
     echo '</p><p style="text-align: center;">Mohon ulangi pengisian.</p><p><br /></p>';
+    echo "</div></div></div></div></div>";
   }
 }
 
@@ -290,7 +308,7 @@ if (isset($_POST['submitted'])) {
               </div>
               <br />
 
-              <div class="pull-right">
+              <div class="pull-left">
                   <br /><input class="btn btn-success" type="submit" name="submit" value="Daftar"/>
                   <input type="hidden" name="submitted" value="TRUE" />
                 </div>

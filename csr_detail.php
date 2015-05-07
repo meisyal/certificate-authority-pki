@@ -3,6 +3,29 @@ session_start();
 
 $page_title = 'Detil CSR - User YOLO CA';
 include('includes/user_header.html');
+
+include('connect/pg_connect.php');
+
+if (isset($_POST['submitted'])) {
+  if (isset($_FILES['csr'])) {
+    if (move_uploaded_file($_FILES['csr']['tmp_name'], "csr/{$_FILES['csr']['name']}")) {
+      $path = 'certificate-authority-pki/csr/' . basename($_FILES['csr']['name']);
+      $q = "UPDATE csr SET detil_isi = '$path' WHERE id_organisasi = 1";
+      $result = pg_query($dbc, $q);
+
+      pg_close($dbc);
+
+      echo "<div class=\"container\">
+              <div class=\"row\" style=\"padding-top:100px;\">
+                <div class=\"col-md-12\">
+                  <div class=\"panel panel-default\">
+                    <div class=\"panel-body\">";
+      echo "<h1>Berkas CSR berhasil diunggah</h1>";
+      echo "Silahkan klik di <a href=\"status_cert.php\">sini</a>";
+      echo "</div></div></div></div></div>";
+    }
+  }
+}
 ?>
 
 <div class="container">
@@ -13,7 +36,7 @@ include('includes/user_header.html');
         <h1>Detil CSR</h1>
         <p>Untuk menghasilkan CSR, Anda bisa menggunakan kakas bantu, seperti OpenSSL.</p>
         <p>Berikut ini adalah contoh dari CSR:</p>
-        <p><textarea rows="17" cols="65" readonly>
+        <textarea rows="17" cols="80" readonly>
         -----BEGIN CERTIFICATE REQUEST-----
         MIICvDCCAaQCAQAwdzELMAkGA1UEBhMCVVMxDTALBgNVBAgMBFV0YWgxDzANBgNV
         BAcMBkxpbmRvbjEWMBQGA1UECgwNRGlnaUNlcnQgSW5jLjERMA8GA1UECwwIRGln
@@ -31,13 +54,18 @@ include('includes/user_header.html');
         29XI1PpVUNCPQGn9p/eX6Qo7vpDaPybRtA2R7XLKjQaF9oXWeCUqy1hvJac9QFO2
         97Ob1alpHPoZ7mWiEuJwjBPii6a9M9G30nUo39lBi1w=
         -----END CERTIFICATE REQUEST----->
-        </textarea></p>
+        </textarea>
 
-        <form action="" method="post" name="csr_client">
-          <p>Masukkan CSR Anda pada:<br /><textarea form="csr_client" rows="17" cols="65">
-          Tempel CSR Anda di sini...</textarea></p>
-          <p><input type="submit" name="submit" value="Lanjutkan" /></p>
-          <input type="hidden" name="submitted" value="TRUE" />
+        <form enctype="multipart/form-data" action="csr_detail.php" method="post">
+          <input type="hidden" name="MAX_FILE_SIZE" value="1024000" />
+          <fieldset><legend>Pilih file CSR Anda yang akan diunggah</legend>
+            <p><b>Berkas:</b> <input type="file" name="csr" /></p>
+          </fieldset>
+
+          <div class="pull-left">
+            <input class="btn btn-success" type="submit" name="submit" value="Unggah" />
+            <input type="hidden" name="submitted" value="TRUE" />
+          </div>
         </form>
       </div>
     </div>
