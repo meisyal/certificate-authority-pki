@@ -1,0 +1,75 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 4096 (0x1000)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=ID, ST=Jawa Timur, L=Surabaya, O=Yolo Inc, OU=Informatics Division, CN=www.yolo.com/emailAddress=agrawimba@gmail.com
+        Validity
+            Not Before: May  6 15:48:26 2015 GMT
+            Not After : May  3 15:48:26 2025 GMT
+        Subject: CN=demo.coro.com, ST=Jawa Timur, C=ID/emailAddress=agrawimba@gmail.com, O=Coro Company, OU=Divisi Informatika
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:9c:bc:28:8b:66:a8:aa:8c:4c:38:98:d4:7b:2b:
+                    9f:2e:cd:07:ad:ab:e1:d0:14:f5:e6:63:65:31:1e:
+                    80:ba:f7:c7:84:d3:38:c2:1e:0d:e5:21:69:47:dc:
+                    c3:4e:f3:40:95:68:35:5c:98:a2:2a:09:8a:d6:0c:
+                    d6:1e:b2:55:01:bc:2e:e5:66:cc:e6:51:cf:cc:76:
+                    ba:f3:1a:90:f2:71:d8:de:20:f9:66:cc:3f:0b:5a:
+                    ab:9a:ac:1a:5c:e8:d0:d8:fe:81:a6:74:2f:82:ed:
+                    eb:95:74:48:e1:2b:ab:8c:fc:c6:b6:ce:4a:ec:31:
+                    29:66:83:f6:e4:c4:34:28:40:d9:5a:96:77:93:a8:
+                    a7:8f:ff:72:3a:7d:c1:98:85:1c:48:5e:26:e2:8f:
+                    9e:a7:76:7d:61:22:3a:00:61:e3:60:34:af:51:ab:
+                    6a:98:b5:ad:4c:89:6c:16:25:23:5e:69:c3:27:ec:
+                    34:c2:e8:1f:56:92:1c:12:5f:e2:bd:e4:18:77:c0:
+                    80:1b:f0:75:01:12:fe:72:97:b5:95:20:24:a3:f0:
+                    8b:b2:4f:7b:20:0d:ec:d4:5f:73:27:e8:0e:03:92:
+                    b2:c6:de:b2:71:d0:72:ea:1b:00:18:db:1b:05:9e:
+                    f4:7b:f9:62:b9:0f:7a:4c:25:03:01:48:48:e3:53:
+                    1d:93
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+    Signature Algorithm: sha1WithRSAEncryption
+         97:0c:f8:4c:5d:70:e4:9d:a8:43:69:58:e2:84:70:0d:4e:43:
+         56:3a:69:ee:3b:4a:d2:d9:53:ef:22:be:60:53:49:2b:6e:09:
+         74:4b:2d:ed:81:88:4f:3d:e2:5b:44:51:11:44:0e:bf:ca:98:
+         f1:0b:5e:3e:ba:e1:5d:76:a3:e9:06:00:5f:39:20:f5:43:00:
+         92:00:4b:3d:db:45:62:e4:4d:27:ed:0e:07:01:4a:df:f0:f6:
+         05:4f:95:c7:dd:91:9d:6b:13:82:00:08:88:5a:d0:a3:ae:45:
+         47:73:30:cd:31:0a:fa:92:6f:76:d7:ba:8f:ca:9a:4f:e6:24:
+         f6:15:56:0e:77:15:ff:b5:0a:ec:94:fd:a6:9e:62:16:c9:85:
+         ef:00:7b:5a:08:bf:af:48:af:94:68:55:5d:70:1e:28:19:98:
+         40:47:92:c6:86:7a:e5:97:9b:d4:a5:27:aa:56:41:dd:a2:e3:
+         98:a0:55:14:72:fe:79:86:6c:4c:ad:c4:2e:2d:03:56:3f:2a:
+         2d:5e:31:b1:c3:4e:18:6f:84:55:f6:90:3e:86:1e:74:33:dd:
+         08:40:d2:78:f4:12:b7:3c:39:3d:3b:da:e7:f0:57:7f:d2:94:
+         b3:eb:a1:d8:1d:7a:03:23:51:0d:01:0c:6f:13:55:f3:3e:1b:
+         8e:21:15:39
+-----BEGIN CERTIFICATE-----
+MIIDvzCCAqegAwIBAgICEAAwDQYJKoZIhvcNAQEFBQAwgaIxCzAJBgNVBAYTAklE
+MRMwEQYDVQQIDApKYXdhIFRpbXVyMREwDwYDVQQHDAhTdXJhYmF5YTERMA8GA1UE
+CgwIWW9sbyBJbmMxHTAbBgNVBAsMFEluZm9ybWF0aWNzIERpdmlzaW9uMRUwEwYD
+VQQDDAx3d3cueW9sby5jb20xIjAgBgkqhkiG9w0BCQEWE2FncmF3aW1iYUBnbWFp
+bC5jb20wHhcNMTUwNTA2MTU0ODI2WhcNMjUwNTAzMTU0ODI2WjCBkjEWMBQGA1UE
+AwwNZGVtby5jb3JvLmNvbTETMBEGA1UECAwKSmF3YSBUaW11cjELMAkGA1UEBhMC
+SUQxIjAgBgkqhkiG9w0BCQEWE2FncmF3aW1iYUBnbWFpbC5jb20xFTATBgNVBAoM
+DENvcm8gQ29tcGFueTEbMBkGA1UECwwSRGl2aXNpIEluZm9ybWF0aWthMIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnLwoi2aoqoxMOJjUeyufLs0Hravh
+0BT15mNlMR6AuvfHhNM4wh4N5SFpR9zDTvNAlWg1XJiiKgmK1gzWHrJVAbwu5WbM
+5lHPzHa68xqQ8nHY3iD5Zsw/C1qrmqwaXOjQ2P6BpnQvgu3rlXRI4SurjPzGts5K
+7DEpZoP25MQ0KEDZWpZ3k6inj/9yOn3BmIUcSF4m4o+ep3Z9YSI6AGHjYDSvUatq
+mLWtTIlsFiUjXmnDJ+w0wugfVpIcEl/iveQYd8CAG/B1ARL+cpe1lSAko/CLsk97
+IA3s1F9zJ+gOA5Kyxt6ycdBy6hsAGNsbBZ70e/liuQ96TCUDAUhI41MdkwIDAQAB
+ow0wCzAJBgNVHRMEAjAAMA0GCSqGSIb3DQEBBQUAA4IBAQCXDPhMXXDknahDaVji
+hHANTkNWOmnuO0rS2VPvIr5gU0krbgl0Sy3tgYhPPeJbRFERRA6/ypjxC14+uuFd
+dqPpBgBfOSD1QwCSAEs920Vi5E0n7Q4HAUrf8PYFT5XH3ZGdaxOCAAiIWtCjrkVH
+czDNMQr6km9217qPyppP5iT2FVYOdxX/tQrslP2mnmIWyYXvAHtaCL+vSK+UaFVd
+cB4oGZhAR5LGhnrll5vUpSeqVkHdouOYoFUUcv55hmxMrcQuLQNWPyotXjGxw04Y
+b4RV9pA+hh50M90IQNJ49BK3PDk9O9rn8Fd/0pSz66HYHXoDI1ENAQxvE1XzPhuO
+IRU5
+-----END CERTIFICATE-----

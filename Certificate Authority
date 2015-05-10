@@ -1,0 +1,34 @@
+CA: Yolo Inc
+============
+
+Generate private key:
+# openssl genrsa -aes256 2048 > yolo.key
+
+Generate root certificate 
+# openssl req -new -x509 -days 3650 -key yolo.key > yolo.crt
+
+Buat file configurasi openssl-config.cnf
+
+Buat file untuk menyimpan serial
+# echo 1000 > yolo.com/serial.txt
+
+Buat file database
+# touch yolo.com/database.txt
+# touch yolo.com/database.txt.attr
+
+Menandatangani sertificate client
+# openssl ca -config openssl-config.txt -in yolo.com/request/demo.coro.com.csr
+
+
+
+Client: Coro Inc
+================
+
+Generate private key:
+# openssl genrsa -aes256 2048 > demo.coro.com.key
+
+Generate CSR dengan private key
+# openssl req -new -key demo.coro.com.key -out demo.coro.com.csr
+
+
+
