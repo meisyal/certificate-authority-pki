@@ -5,6 +5,8 @@ $page_title = 'Status Permohonan Sertifikat - User YOLO CA';
 include('includes/user_header.html');
 
 include('connect/pg_connect.php');
+
+$username = $_SESSION['nama_user'];
 ?>
 <!--Header-->
 
@@ -29,7 +31,7 @@ include('connect/pg_connect.php');
                         WHERE o.id_organisasi = p.id_organisasi
                         AND o.id_organisasi = c.id_organisasi
                         AND o.id_organisasi = s.id_organisasi
-                        AND o.id_organisasi = 1";
+                        AND o.id_organisasi = (SELECT id_organisasi FROM pemohon WHERE nama_user = '$username')";
                   $result = pg_query($dbc, $q);
 
                   while ($row = pg_fetch_row($result)) {
