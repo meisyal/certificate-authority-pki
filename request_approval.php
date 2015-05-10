@@ -22,23 +22,24 @@ include('connect/pg_connect.php');
                   <th style="text-align:center;width:200px">CSR</th>
                   <th style="text-align:center;width:180px">KONFIRMASI</th>
                 </tr>
-                <tr>
                 <?php
                   $q = "SELECT o.nama, o.cn, c.detil_isi, o.id_organisasi
-                        FROM organisasi o, csr c
+                        FROM organisasi o, csr c, sertifikat s
                         WHERE o.id_organisasi = c.id_organisasi
-                        AND o.id_organisasi = 1";
+                        AND o.id_organisasi = s.id_organisasi
+                        AND s.status = 'Pending'";
                   $result = pg_query($dbc, $q);
 
                   while ($row = pg_fetch_array($result)) {
+                    echo "<tr>";
                     echo "<td>$row[0]</td>";
                     echo "<td>$row[1]</td>";
                     echo "<td><a href=\"../$row[2]\">klik di sini</a></td>";
                     echo "<td><form action=\"upload_cert.php\" method=\"get\"><input class=\"btn btn-success\" type=\"submit\" name=\"submit\" value=\"approve\" />
                           <input type=\"hidden\" name=\"org_id\" value=".$row[3]." /></form></td>";
+                    echo "</tr>";
                   }
                 ?>
-                </tr>
               </thead>
           </table>
       </div>
