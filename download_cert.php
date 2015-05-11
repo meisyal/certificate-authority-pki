@@ -5,6 +5,8 @@ $page_title = 'Unduh Permohonan Sertifikat - User YOLO CA';
 include('includes/user_header.html');
 
 include('connect/pg_connect.php');
+
+$username = $_SESSION['nama_user'];
 ?>
 <!--Header-->
 
@@ -21,23 +23,27 @@ include('connect/pg_connect.php');
                   <th style="text-align:center;">SERTIFIKAT</th>
                   <th style="text-align:center;">STATUS</th>
               </tr>
-              <tr>
               <?php
                 $q = "SELECT o.cn, s.berkas, s.status
                       FROM organisasi o, sertifikat s
                       WHERE o.id_organisasi = s.id_organisasi
-                      AND o.id_organisasi = 1";
+                      AND o.id_organisasi = (SELECT id_organisasi FROM pemohon WHERE nama_user = '$username')";
                 $result = pg_query($dbc, $q);
 
                 while ($row = pg_fetch_array($result)) {
+                  echo "<tr>";
                   echo "<td>$row[0]</td>";
-                  echo "<td><a href=\"../$row[1]\">$row[1]</a></td>";
+                  if ($row[2] = 'Pending') {
+                    echo "<td>Kosong</td>";
+                  } else {
+                    echo "<td><a href=\"../$row[1]\">$row[1]</a></td>";  
+                  }
                   echo "<td>$row[2]</td>";
+                  echo "</tr>";
                 }
 
                 pg_close($dbc);
               ?>
-              </tr>
           </thread>
       </table>
       </div>
