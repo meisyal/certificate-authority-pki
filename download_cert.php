@@ -33,10 +33,10 @@ $username = $_SESSION['nama_user'];
                 while ($row = pg_fetch_array($result)) {
                   echo "<tr>";
                   echo "<td>$row[0]</td>";
-                  if ($row[2] = 'Pending') {
+                  if ($row[2] == 'Pending') {
                     echo "<td>Kosong</td>";
                   } else {
-                    echo "<td><a href=\"../$row[1]\">$row[1]</a></td>";  
+                    echo "<td><a href=\"../$row[1]\">$row[1]</a></td>";
                   }
                   echo "<td>$row[2]</td>";
                   echo "</tr>";
