@@ -1,6 +1,14 @@
 <?php # - request_approval.php
 session_start();
 
+// If no session value presents, redirect to
+if (!isset($_SESSION['nama_user'])) {
+  require_once('includes/login_functions.php');
+  $url = absolute_url();
+  header("Location: $url");
+  exit();
+}
+
 $page_title = 'Daftar Permohonan Sertifikat - Admin YOLO CA';
 include('includes/admin_header.html');
 
