@@ -14,7 +14,7 @@ include('includes/admin_header.html');
 
 include('connect/pg_connect.php');
 
-$org_id = $_GET['org_id'];
+$org_id = (int) $_GET['org_id'];
 
 if (isset($_POST['submitted'])) {
   if (isset($_FILES['cert'])) {
