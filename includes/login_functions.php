@@ -35,14 +35,21 @@ function check_login($dbc, $username = '', $password = '') {
 
   // If everything's OK.
   if (empty($errors)) {
-    $q = "SELECT nama_user FROM pemohon WHERE nama_user='$u' AND kata_sandi='$p'";
+    $q = "SELECT nama_user FROM pemohon WHERE nama_user='$u' AND kata_sandi='$p' AND peranan = 'pemohon'";
     $r = pg_query($dbc, $q);
+
+    $s = "SELECT nama FROM akun WHERE nama='$u' AND kata_sandi='$p'";
+    $t = pg_query($dbc, $s);
 
     // Check the result
     if (pg_num_rows($r) == 1) {
       $row = pg_fetch_array($r, NULL, PGSQL_ASSOC);
 
-      return array(true, $row);
+      return array(true, pemohon, $row);
+    } else if (pg_num_rows($t) == 1) {
+      $row = pg_fetch_array($t, NULL, PGSQL_ASSOC);
+
+      return array(true, admin, $row);
     } else {
       $errors[] = 'Kombinasi nama akun dan kata sandi Anda tidak cocok.';
     }
