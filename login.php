@@ -11,27 +11,31 @@ if (isset($_POST['submitted'])) {
   require_once('includes/login_functions.php');
   require_once('connect/pg_connect.php');
 
-  if ($_POST['username'] == "admin" && $_POST['password'] == "admin") {
+  list($check, $role, $data) = check_login($dbc, $_POST['username'], $_POST['password']);
+
+  if ($check && $role == 'pemohon') { // OK!
+    // Set session data
+    session_start();
+    $_SESSION['nama_user'] = $data['nama_user'];
+
+    // Redirect
+    $url = absolute_url('csr_detail.php');
+    header("Location: $url");
+    exit();
+  } else if ($check && $role == 'admin') {
+    // Set session data
+    session_start();
+    $_SESSION['nama_user'] = $data['nama'];
+
+    // Redirect
     $url = absolute_url('request_approval.php');
     header("Location: $url");
-  } else if ($_POST['username'] != "admin") {
-    list($check, $data) = check_login($dbc, $_POST['username'], $_POST['password']);
-
-    if ($check) { // OK!
-      // Set session data
-      session_start();
-      $_SESSION['nama_user'] = $data['nama_user'];
-
-      // Redirect
-      $url = absolute_url('csr_detail.php');
-      header("Location: $url");
-      exit();
-    } else { // Unsuccessful!
-      $errors = $data;
-    }
-
-    pg_close($dbc);
+    exit();
+  } else { // Unsuccessful!
+    $errors = $data;
   }
+
+  pg_close($dbc);
 }
 
 // Print any error messages, if they exist:
