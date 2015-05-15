@@ -45,7 +45,11 @@ $username = $_SESSION['nama_user'];
                   while ($row = pg_fetch_row($result)) {
                     echo "<td>$row[0]</td>";
                     echo "<td>$row[1]</td>";
-                    echo "<td><a href=\"../$row[2]\">klik di sini</a></td>";
+                    if ($row[2] == 'Kosong') {
+                      echo "<td>Belum dimasukkan</td>";
+                    } else {
+                      echo "<td><a href=\"../$row[2]\">klik di sini</a></td>";
+                    }
                     echo "<td>$row[3]</td>";
                   }
 
