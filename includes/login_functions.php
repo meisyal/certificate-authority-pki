@@ -35,10 +35,10 @@ function check_login($dbc, $username = '', $password = '') {
 
   // If everything's OK.
   if (empty($errors)) {
-    $q = "SELECT nama_user FROM pemohon WHERE nama_user='$u' AND kata_sandi='$p' AND peranan = 'pemohon'";
+    $q = "SELECT nama_user FROM pemohon WHERE nama_user='$u' AND kata_sandi= crypt('$p', kata_sandi) AND peranan = 'pemohon'";
     $r = pg_query($dbc, $q);
 
-    $s = "SELECT nama FROM akun WHERE nama='$u' AND kata_sandi='$p'";
+    $s = "SELECT nama FROM akun WHERE nama='$u' AND kata_sandi= crypt('$p', kata_sandi)";
     $t = pg_query($dbc, $s);
 
     // Check the result
