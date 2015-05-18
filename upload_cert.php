@@ -19,7 +19,7 @@ $org_id = (int) $_GET['org_id'];
 if (isset($_POST['submitted'])) {
   if (isset($_FILES['cert'])) {
     if (move_uploaded_file($_FILES['cert']['tmp_name'], "certificates/{$_FILES['cert']['name']}")) {
-      $path = 'certificate-authority-pki/certificates/' . basename($_FILES['cert']['name']);
+      $path = '../certificates/' . basename($_FILES['cert']['name']);
       $q = "UPDATE sertifikat SET berkas = '$path' WHERE id_organisasi = $org_id";
       $result = pg_query($dbc, $q);
 
