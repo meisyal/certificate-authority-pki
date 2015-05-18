@@ -19,7 +19,7 @@ $username = $_SESSION['nama_user'];
 if (isset($_POST['submitted'])) {
   if (isset($_FILES['csr'])) {
     if (move_uploaded_file($_FILES['csr']['tmp_name'], "csr/{$_FILES['csr']['name']}")) {
-      $path = 'certificate-authority-pki/csr/' . basename($_FILES['csr']['name']);
+      $path = '../csr/' . basename($_FILES['csr']['name']);
       $q = "UPDATE csr SET detil_isi = '$path' WHERE id_organisasi = (SELECT id_organisasi FROM pemohon WHERE nama_user = '$username')";
       $result = pg_query($dbc, $q);
 

@@ -45,7 +45,7 @@ include('connect/pg_connect.php');
                     if ($row[2] == 'Kosong') {
                       echo "<td>Belum dimasukkan</td>";
                     } else {
-                      echo "<td><a href=\"../$row[2]\">klik di sini</a></td>";
+                      echo "<td><a href=\" absolute_url() /$row[2]\">klik di sini</a></td>";
                     }
                     echo "<td><form action=\"upload_cert.php\" method=\"get\"><input class=\"btn btn-success\" type=\"submit\" name=\"submit\" value=\"approve\" />
                           <input type=\"hidden\" name=\"org_id\" value=".$row[3]." /></form></td>";

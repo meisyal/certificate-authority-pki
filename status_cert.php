@@ -48,7 +48,7 @@ $username = $_SESSION['nama_user'];
                     if ($row[2] == 'Kosong') {
                       echo "<td>Belum dimasukkan</td>";
                     } else {
-                      echo "<td><a href=\"../$row[2]\">klik di sini</a></td>";
+                      echo "<td><a href=\" absolute_url() /$row[2]\">klik di sini</a></td>";
                     }
                     echo "<td>$row[3]</td>";
                   }
