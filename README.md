@@ -8,7 +8,13 @@ sedang dalam perbaikan
 sedang dalam perbaikan
 
 ## Hal yang harus dikerjakan
-sedang dalam perbaikan
+Hal-hal yang masih dalam proses pengerjaan antara lain:
+- [x] Formulir permohonan sertifikat digital
+- [x] Autentifikasi
+- [ ] Menggunggah CSR
+- [ ] Memproses permohonan sertifikat digital
+- [ ] Mengunduh sertifikat digital
+- [ ] Memutus sertifikat digital
 
 ## Kontributor
 Adapun kontributor yang ikut berkontribusi dalam pengerjaan aplikasi ini, antara lain:
