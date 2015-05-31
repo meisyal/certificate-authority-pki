@@ -18,20 +18,26 @@ $org_id = (int) $_GET['org_id'];
 
 if (isset($_POST['submitted'])) {
   if (isset($_FILES['cert'])) {
-    if (move_uploaded_file($_FILES['cert']['tmp_name'], "certificates/{$_FILES['cert']['name']}")) {
-      $path = '../certificates/' . basename($_FILES['cert']['name']);
-      $q = "UPDATE sertifikat SET berkas = '$path' WHERE id_organisasi = $org_id";
-      $result = pg_query($dbc, $q);
+    // validate the type. Should be .csr
+    $allowed = array('application/x-x509-ca-cert', 'application/x-x509-user-cert');
+    if (in_array($_FILES['csr']['type'], $allowed)) {
+      if (move_uploaded_file($_FILES['cert']['tmp_name'], "certificates/{$_FILES['cert']['name']}")) {
+        $path = '../certificates/' . basename($_FILES['cert']['name']);
+        $q = "UPDATE sertifikat SET berkas = '$path' WHERE id_organisasi = $org_id";
+        $result = pg_query($dbc, $q);
 
-      pg_close($dbc);
+        pg_close($dbc);
 
-      echo "<div class=\"container\">
-              <div class=\"row\" style=\"padding-top:100px;\">
-                <div class=\"col-md-12\">
-                  <div class=\"panel panel-default\">
-                    <div class=\"panel-body\">";
-      echo "<h1>Berkas Certificate berhasil diunggah</h1>";
-      echo "</div></div></div></div></div>";
+        echo "<div class=\"container\">
+                <div class=\"row\" style=\"padding-top:100px;\">
+                  <div class=\"col-md-12\">
+                    <div class=\"panel panel-default\">
+                      <div class=\"panel-body\">";
+        echo "<h1>Berkas Certificate berhasil diunggah</h1>";
+        echo "</div></div></div></div></div>";
+      }
+    } else {
+      echo '<p class="error">Please, upload a CERT file.</p>';
     }
   }
 }

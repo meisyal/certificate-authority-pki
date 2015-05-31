@@ -18,21 +18,27 @@ $username = $_SESSION['nama_user'];
 
 if (isset($_POST['submitted'])) {
   if (isset($_FILES['csr'])) {
-    if (move_uploaded_file($_FILES['csr']['tmp_name'], "csr/{$_FILES['csr']['name']}")) {
-      $path = '../csr/' . basename($_FILES['csr']['name']);
-      $q = "UPDATE csr SET detil_isi = '$path' WHERE id_organisasi = (SELECT id_organisasi FROM pemohon WHERE nama_user = '$username')";
-      $result = pg_query($dbc, $q);
+    // validate the type. Should be .csr
+    $allowed = array('application/pkcs10');
+    if (in_array($_FILES['csr']['type'], $allowed)) {
+      if (move_uploaded_file($_FILES['csr']['tmp_name'], "csr/{$_FILES['csr']['name']}")) {
+        $path = '../csr/' . basename($_FILES['csr']['name']);
+        $q = "UPDATE csr SET detil_isi = '$path' WHERE id_organisasi = (SELECT id_organisasi FROM pemohon WHERE nama_user = '$username')";
+        $result = pg_query($dbc, $q);
 
-      pg_close($dbc);
+        pg_close($dbc);
 
-      echo "<div class=\"container\">
-              <div class=\"row\" style=\"padding-top:100px;\">
-                <div class=\"col-md-12\">
-                  <div class=\"panel panel-default\">
-                    <div class=\"panel-body\">";
-      echo "<h1>Berkas CSR berhasil diunggah</h1>";
-      echo "Silahkan klik di <a href=\"status_cert.php\">sini</a>";
-      echo "</div></div></div></div></div>";
+        echo "<div class=\"container\">
+                <div class=\"row\" style=\"padding-top:100px;\">
+                  <div class=\"col-md-12\">
+                    <div class=\"panel panel-default\">
+                      <div class=\"panel-body\">";
+        echo "<h1>Berkas CSR berhasil diunggah</h1>";
+        echo "Silahkan klik di <a href=\"status_cert.php\">sini</a>";
+        echo "</div></div></div></div></div>";
+      }
+    } else {
+      echo '<p class="error">Please, upload a CSR file.</p>';
     }
   }
 }
